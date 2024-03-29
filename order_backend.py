@@ -16,12 +16,9 @@ for i in range(1, ORDER_LIMIT):
         "order_id": i,
         "user_id": f"tom_{1}",
         "total_cost": i * 2,
-        "items": "burger, sandwich"
-    }   
-    producer.send(
-        ORDER_KAFKA_TOPIC,
-        json.dumps(data).encode("utf-8")
-    )
-    
+        "items": "burger, sandwich",
+    }
+    producer.send(ORDER_KAFKA_TOPIC, json.dumps(data).encode("utf-8"))
+
     print(f"Done generating ...{i}")
     time.sleep(10)
