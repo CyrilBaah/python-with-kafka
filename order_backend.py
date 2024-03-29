@@ -1,6 +1,5 @@
 import json
 import time
-
 from kafka import KafkaProducer
 
 ORDER_KAFKA_TOPIC = "order_details"
@@ -14,11 +13,11 @@ print("Will generate one unique order every 10 seconds")
 for i in range(1, ORDER_LIMIT):
     data = {
         "order_id": i,
-        "user_id": f"tom_{1}",
+        "user_id": f"tom_{i}",
         "total_cost": i * 2,
         "items": "burger, sandwich",
     }
     producer.send(ORDER_KAFKA_TOPIC, json.dumps(data).encode("utf-8"))
 
-    print(f"Done generating ...{i}")
+    print(f"Done generating order {i}")
     time.sleep(10)
